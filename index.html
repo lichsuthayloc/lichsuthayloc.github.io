@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch sử Thầy Lộc — Khám phá 5 di tích lịch sử</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Georgia,'Times New Roman',serif;background:#e9dcc0;background-image:radial-gradient(#d9c69c 1px,transparent 1px),radial-gradient(#d9c69c 1px,transparent 1px);background-size:22px 22px;background-position:0 0,11px 11px;color:#33261a;line-height:1.55}
+  header{background:linear-gradient(180deg,#6d1414,#8b1e1e 60%,#a52a1e);color:#f7e8c9;padding:26px 16px 24px;text-align:center;border-bottom:6px double #d4af37}
+  header .heroimg{max-width:980px;width:100%;border:4px solid #d4af37;outline:2px solid #5d1010;border-radius:6px;display:block;margin:0 auto 16px;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+  header h1{font-size:2.1rem;letter-spacing:2px;text-transform:uppercase;color:#ffe9a8;text-shadow:0 2px 0 #4d0d0d}
+  header .sub{font-style:italic;opacity:.95;max-width:760px;margin:10px auto 0;font-size:1.02rem}
+  .totalbar{max-width:980px;margin:18px auto 0;background:rgba(0,0,0,.22);border:1px solid #d4af37;border-radius:999px;padding:8px 16px;font-weight:600}
+  .totalbar .bar{height:10px;background:rgba(255,255,255,.25);border-radius:99px;margin-top:6px;overflow:hidden}
+  .totalbar .fillbar{height:100%;width:0;background:#ffd93b;border-radius:99px;transition:width .4s}
+  main{max-width:980px;margin:0 auto;padding:22px 14px 60px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:30px}
+  .card{background:#fbf3dd;border-radius:10px;padding:0 12px 16px;text-align:center;box-shadow:0 3px 12px rgba(60,30,0,.25);border:2px solid #b98a2f;overflow:hidden}
+  .card .cardimg{width:calc(100% + 24px);margin:0 -12px;height:130px;object-fit:cover;border-bottom:3px solid #b98a2f}
+  .card h3{margin:10px 0 4px;font-size:1.05rem;color:#7a1a1a}
+  .card p{font-size:.86rem;color:#6b5b43;min-height:40px}
+  .card .prog{font-weight:700;color:#8b1e1e;font-size:.9rem;margin:6px 0 10px}
+  .btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;font-weight:700;border-radius:999px;padding:9px 16px;font-size:.92rem;margin:3px;font-family:inherit}
+  .btn-main{background:#8b1e1e;color:#ffe9a8}
+  .btn-vr{background:#fbf3dd;border:2px solid #8b1e1e;color:#8b1e1e}
+  .btn:hover{filter:brightness(1.1)}
+  section.site{background:#fbf3dd;border-radius:10px;box-shadow:0 3px 14px rgba(60,30,0,.25);padding:0 20px 24px;margin-bottom:28px;border:2px solid #b98a2f;overflow:hidden}
+  section.site .siteimg{width:calc(100% + 40px);margin:0 -20px;height:230px;object-fit:cover;object-position:center 30%;border-bottom:4px solid #b98a2f}
+  section.site h2{font-size:1.5rem;color:#7a1a1a;margin-top:16px;letter-spacing:.5px}
+  .intro{margin:8px 0 14px;color:#4a3b28;font-style:italic}
+  .vrbox{background:#f3e5c3;border:1px dashed #b3541e;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:.95rem}
+  .vrbox a{font-weight:700;color:#8b1e1e}
+  .score{position:sticky;top:8px;background:#8b1e1e;color:#ffe9a8;border:1px solid #d4af37;border-radius:999px;padding:7px 16px;font-weight:700;display:inline-block;margin-bottom:14px;z-index:5}
+  h4.part{margin:20px 0 10px;font-size:1.1rem;color:#7a1a1a;border-bottom:2px solid #d9c69c;padding-bottom:4px}
+  .q{border:1px solid #ddc896;border-radius:10px;padding:14px;margin-bottom:12px;background:#fffaf0}
+  .q .qt{font-weight:600;margin-bottom:10px}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media(max-width:560px){.opts{grid-template-columns:1fr} section.site .siteimg{height:160px}}
+  .opt{text-align:left;border:2px solid #ddc896;background:#fffdf6;border-radius:10px;padding:9px 12px;cursor:pointer;font-size:.97rem;font-family:inherit}
+  .opt:hover{border-color:#b98a2f}
+  .opt.correct{background:#e3f6e3;border-color:#2e9e4f;color:#14532d;font-weight:700}
+  .opt.wrong{background:#fde8e8;border-color:#d33;color:#7f1d1d}
+  .opt:disabled{cursor:default;opacity:.92}
+  .fb{margin-top:8px;font-weight:700;font-size:.93rem;min-height:20px}
+  .fb.ok{color:#1c7c3c}.fb.no{color:#c0392b}
+  .fillrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .fillrow input{flex:1;min-width:200px;padding:10px 12px;border:2px solid #ddc896;border-radius:10px;font-size:1rem;font-family:inherit;background:#fffdf6}
+  .fillrow input.correct{border-color:#2e9e4f;background:#e3f6e3}
+  .fillrow input.wrong{border-color:#d33;background:#fde8e8}
+  .btn-check{background:#8b1e1e;color:#ffe9a8}
+  .btn-show{background:#efe0bc;color:#5b4a2f}
+  .ans{display:none;margin-top:8px;background:#eef7ee;border-radius:8px;padding:8px 12px;font-size:.94rem}
+  table.match{width:100%;border-collapse:collapse;margin-bottom:6px}
+  table.match th,table.match td{border:1px solid #ddc896;padding:8px 10px;text-align:left;font-size:.95rem}
+  table.match th{background:#f3e5c3}
+  .matchitem{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid #ddc896;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fffaf0;flex-wrap:wrap}
+  .matchitem select{padding:8px 10px;border:2px solid #ddc896;border-radius:8px;font-size:1rem;font-weight:700;font-family:inherit}
+  .matchitem.correct{border-color:#2e9e4f;background:#e3f6e3}
+  .matchitem.wrong{border-color:#d33;background:#fde8e8}
+  .reset{background:#6b5b43;color:#fff;margin-top:8px}
+  footer{text-align:center;color:#7a6a52;padding:24px 12px 40px;font-size:.9rem;font-style:italic}
+  .note{background:#fbf3dd;border:1px solid #b98a2f;border-radius:10px;padding:12px 16px;margin-bottom:24px;font-size:.95rem}
+</style>
+</head>
+<body>
+<header>
+  <img class="heroimg" src="img/hero.jpg" alt="Toàn cảnh 5 di tích lịch sử: Dinh Độc Lập, Bến Nhà Rồng, Nhà thờ Đức Bà, Nhà tù Phú Lợi và Bảo tàng Chứng tích Chiến tranh">
+  <h1>🏛️ Lịch sử Thầy Lộc</h1>
+  <p class="sub">Khám phá 5 di tích lịch sử — tham quan ảo, làm bài trực tiếp trên web và chấm điểm ngay.<br>Mỗi di tích có 15 câu: 5 trắc nghiệm · 5 điền khuyết nâng cao · 5 câu nối cột.</p>
+  <div class="totalbar">Tiến độ chung: <span id="totalText">0 / 75 câu đúng</span>
+    <div class="bar"><div class="fillbar" id="totalFill"></div></div>
+  </div>
+</header>
+
+<main>
+  <div class="note">📌 <b>Cách làm bài:</b> Trắc nghiệm — bấm chọn đáp án, máy báo đúng/sai ngay. Điền khuyết — gõ đáp án rồi bấm <b>Kiểm tra</b> (máy chấp nhận cách viết tương đương, ví dụ “da cam” hay “chất độc da cam”). Nối cột — chọn chữ cái a–e cho từng mục ở cột A.</div>
+  <div class="cards" id="cards"></div>
+  <div id="sites"></div>
+</main>
+
+<footer>Lịch sử Thầy Lộc · Bộ 75 câu hỏi khám phá 5 di tích lịch sử · Nội dung và đáp án theo bộ câu hỏi của thầy cô cung cấp.</footer>
+
+<script>
+const SITES = [
+{
+  id:"dinh-doc-lap", img:"img/dinh-doc-lap.jpg", name:"Dinh Độc Lập", icon:"🏛️", color:"#b3541e",
+  short:"Di tích gắn với ngày 30/4/1975 lịch sử",
+  intro:"Di tích lịch sử đặc biệt ở trung tâm TP. Hồ Chí Minh, gắn với sự kiện ngày 30/4/1975 — ngày giải phóng miền Nam, thống nhất đất nước. Công trình hiện nay do kiến trúc sư Ngô Viết Thụ thiết kế, còn được gọi là Hội trường Thống Nhất.",
+  vr:{url:"https://thamquanvr360.dinhdoclap.gov.vn/", label:"🥽 Tham quan ảo VR360", note:"Trang tham quan ảo chính thức của Dinh Độc Lập."},
+  mc:[
+    {q:"Dinh Độc Lập gắn với sự kiện nào?", opts:["Ngày 30/4/1975","Ngày 2/9/1945","Ngày 7/5/1954","Ngày 5/6/1911"], ans:0},
+    {q:"Dinh Độc Lập nằm ở thành phố nào?", opts:["Hà Nội","Huế","TP. Hồ Chí Minh","Đà Nẵng"], ans:2},
+    {q:"Dinh Độc Lập còn được gọi là gì?", opts:["Hội trường Thống Nhất","Bến Nhà Rồng","Nhà hát Thành phố","Dinh Gia Long"], ans:0},
+    {q:"Phương tiện nào tiến vào Dinh Độc Lập ngày 30/4/1975?", opts:["Tàu thủy","Xe tăng","Máy bay","Tàu hỏa"], ans:1},
+    {q:"Ngày 30/4/1975 đánh dấu điều gì?", opts:["Kết thúc cuộc kháng chiến chống Mỹ, cứu nước","Bắt đầu kháng chiến chống Pháp","Thành lập Đảng","Bắt đầu Cách mạng tháng Tám"], ans:0}
+  ],
+  fill:[
+    {q:"Công trình Dinh Độc Lập hiện nay được thiết kế bởi kiến trúc sư ______.", ans:"Ngô Viết Thụ", accept:["ngo viet thu"]},
+    {q:"Công trình Dinh Độc Lập được khởi công xây dựng lại vào năm ______.", ans:"1962", accept:["1962"]},
+    {q:"Chiếc xe tăng mang số hiệu ______ đã húc đổ cổng chính Dinh Độc Lập ngày 30/4/1975.", ans:"390", accept:["390","xe tang 390"]},
+    {q:"Người cắm lá cờ của Mặt trận Dân tộc Giải phóng miền Nam Việt Nam trên nóc Dinh Độc Lập trưa 30/4/1975 là ______.", ans:"Bùi Quang Thận", accept:["bui quang than"]},
+    {q:"Vị tổng thống cuối cùng của chính quyền Việt Nam Cộng hòa tuyên bố đầu hàng ngày 30/4/1975 là ______.", ans:"Dương Văn Minh", accept:["duong van minh"]}
+  ],
+  matchOptions:{a:"Tên gọi khác của Dinh Độc Lập", b:"Giữ gìn công trình lịch sử", c:"Di tích gắn với ngày 30/4/1975", d:"Phương tiện tiến vào Dinh Độc Lập", e:"Ngày giải phóng miền Nam"},
+  match:[
+    {a:"Dinh Độc Lập", ans:"c"},
+    {a:"30/4/1975", ans:"e"},
+    {a:"Hội trường Thống Nhất", ans:"a"},
+    {a:"Xe tăng", ans:"d"},
+    {a:"Bảo tồn di tích", ans:"b"}
+  ]
+},
+{
+  id:"ben-nha-rong", img:"img/ben-nha-rong.jpg", name:"Bến Nhà Rồng", icon:"🚢", color:"#1f6fb2",
+  short:"Nơi Bác Hồ ra đi tìm đường cứu nước năm 1911",
+  intro:"Nơi ngày 5/6/1911, người thanh niên Nguyễn Tất Thành lên tàu ra đi tìm đường cứu nước. Khu vực Bến Nhà Rồng nay gắn với Bảo tàng Hồ Chí Minh — Chi nhánh Thành phố Hồ Chí Minh.",
+  vr:{url:"https://duan.vrtour360.vn/BenNhaRong/", label:"🥽 Tham quan ảo VR360", note:"Tour ảo 360 Bến Nhà Rồng."},
+  mc:[
+    {q:"Bến Nhà Rồng gắn với nhân vật lịch sử nào?", opts:["Trần Hưng Đạo","Nguyễn Tất Thành","Nguyễn Trãi","Lý Thường Kiệt"], ans:1},
+    {q:"Nguyễn Tất Thành ra đi tìm đường cứu nước vào năm nào?", opts:["1911","1930","1945","1975"], ans:0},
+    {q:"Nguyễn Tất Thành rời Bến Nhà Rồng bằng phương tiện nào?", opts:["Máy bay","Tàu hỏa","Tàu biển","Ô tô"], ans:2},
+    {q:"Bến Nhà Rồng nằm tại thành phố nào?", opts:["Cần Thơ","TP. Hồ Chí Minh","Đà Lạt","Hải Phòng"], ans:1},
+    {q:"Nguyễn Tất Thành ra đi với mục đích chủ yếu gì?", opts:["Đi du lịch","Tìm đường cứu nước","Đi buôn bán","Tham gia thể thao"], ans:1}
+  ],
+  fill:[
+    {q:"Tên con tàu đưa Nguyễn Tất Thành rời cảng Sài Gòn ngày 5/6/1911 là ______.", ans:"Amiral Latouche-Tréville", accept:["amiral latouche treville","latouche treville","amiral latouche-treville"]},
+    {q:"Tên gọi Nguyễn Tất Thành sử dụng khi làm việc trên tàu năm 1911 là ______.", ans:"Văn Ba", accept:["van ba","anh ba","nguyen van ba"]},
+    {q:"Nguyễn Tất Thành rời Bến Nhà Rồng đúng ngày ______ (ghi ngày/tháng/năm).", ans:"5/6/1911", accept:["5/6/1911","05/06/1911","5-6-1911","05-06-1911","ngay 5 thang 6 nam 1911","5 thang 6 nam 1911"]},
+    {q:"Bến Nhà Rồng hiện gắn với cơ sở ______ – Chi nhánh Thành phố Hồ Chí Minh.", ans:"Bảo tàng Hồ Chí Minh", accept:["bao tang ho chi minh"]},
+    {q:"Khi Nguyễn Tất Thành ra đi năm 1911, Việt Nam đang chịu sự thống trị của thực dân ______.", ans:"Pháp", accept:["phap","thuc dan phap"]}
+  ],
+  matchOptions:{a:"Người ra đi tìm đường cứu nước", b:"Cơ sở bảo tàng tại khu vực Bến Nhà Rồng", c:"Nơi Nguyễn Tất Thành bắt đầu hành trình ra đi năm 1911", d:"Phương tiện Nguyễn Tất Thành sử dụng", e:"Ngày Nguyễn Tất Thành ra đi tìm đường cứu nước"},
+  match:[
+    {a:"Bến Nhà Rồng", ans:"c"},
+    {a:"5/6/1911", ans:"e"},
+    {a:"Nguyễn Tất Thành", ans:"a"},
+    {a:"Tàu biển", ans:"d"},
+    {a:"Bảo tàng Hồ Chí Minh", ans:"b"}
+  ]
+},
+{
+  id:"nha-tho-duc-ba", img:"img/nha-tho-duc-ba.jpg", name:"Nhà thờ Đức Bà", icon:"⛪", color:"#7d4a9e",
+  short:"Công trình gạch đỏ nổi tiếng của Sài Gòn",
+  intro:"Công trình kiến trúc tôn giáo nổi tiếng của TP. Hồ Chí Minh, được xây dựng trong thời kỳ Pháp thuộc — khởi công năm 1877, khánh thành năm 1880 — nổi bật với vật liệu gạch đỏ ở mặt ngoài và hai tháp chuông ở mặt trước.",
+  vr:{url:"https://360view.vn/gallery/data/projects/vietnam/tp_hcm/nhathoducba__022011/", label:"🥽 Tham quan ảo 360", note:"Tour 360 Nhà thờ Đức Bà Sài Gòn."},
+  mc:[
+    {q:"Nhà thờ Đức Bà Sài Gòn là công trình thuộc lĩnh vực nào?", opts:["Tôn giáo","Công nghiệp","Quân sự","Nông nghiệp"], ans:0},
+    {q:"Nhà thờ Đức Bà Sài Gòn nằm ở đâu?", opts:["TP. Hồ Chí Minh","Hà Nội","Hải Phòng","Cần Thơ"], ans:0},
+    {q:"Nhà thờ Đức Bà có bao nhiêu tháp chuông nổi bật ở mặt trước?", opts:["Một","Hai","Ba","Bốn"], ans:1},
+    {q:"Vật liệu nào tạo nên màu sắc đặc trưng ở mặt ngoài nhà thờ?", opts:["Gạch đỏ","Gỗ xanh","Đá đen","Kính vàng"], ans:0},
+    {q:"Nhà thờ Đức Bà được xây dựng chủ yếu trong thời kỳ nào?", opts:["Thời Lý","Thời Pháp thuộc","Sau năm 2000","Thời Trần"], ans:1}
+  ],
+  fill:[
+    {q:"Nhà thờ Đức Bà Sài Gòn được khởi công xây dựng vào năm ______.", ans:"1877", accept:["1877"]},
+    {q:"Công trình được khánh thành vào năm ______.", ans:"1880", accept:["1880"]},
+    {q:"Kiến trúc sư người Pháp thiết kế Nhà thờ Đức Bà Sài Gòn là ______.", ans:"Jules Bourard", accept:["jules bourard","bourard"]},
+    {q:"Hai tháp chuông có mái nhọn của nhà thờ được bổ sung vào năm ______.", ans:"1895", accept:["1895"]},
+    {q:"Nhà thờ Đức Bà Sài Gòn được nâng lên hàng Tiểu Vương cung thánh đường vào năm ______.", ans:"1962", accept:["1962"]}
+  ],
+  matchOptions:{a:"Vật liệu nổi bật ở mặt ngoài", b:"Giữ gìn vẻ đẹp công trình", c:"Công trình kiến trúc tôn giáo nổi tiếng", d:"Tôn giáo gắn với nhà thờ", e:"Đặc điểm nổi bật ở mặt trước"},
+  match:[
+    {a:"Nhà thờ Đức Bà", ans:"c"},
+    {a:"Hai tháp chuông", ans:"e"},
+    {a:"Gạch đỏ", ans:"a"},
+    {a:"Công giáo", ans:"d"},
+    {a:"Bảo tồn", ans:"b"}
+  ]
+},
+{
+  id:"nha-tu-phu-loi", img:"img/nha-tu-phu-loi.jpg", name:"Nhà tù Phú Lợi", icon:"🕯️", color:"#4a4a4a",
+  short:"Chứng tích tinh thần đấu tranh bất khuất",
+  intro:"Di tích lịch sử cấp quốc gia (được công nhận năm 1980), nay thuộc phường Phú Lợi, TP. Hồ Chí Minh. Trại giam được chính quyền Ngô Đình Diệm tổ chức vào năm 1957 để giam giữ cán bộ và người yêu nước; tham quan nơi đây giúp hiểu hơn về tinh thần đấu tranh kiên cường, bất khuất của các chiến sĩ cách mạng.",
+  vr:{url:"https://sovhttdl.binhduong.gov.vn/di-tich-va-danh-thang/di-tich-lich-su-van-hoa-va-danh-lam-thang-canh-cap-quoc-gia-tren-dia-ban-tinh-binh-duong-291021", label:"ℹ️ Trang thông tin chính thức", note:"Chưa tìm thấy tour tham quan ảo chính thống của di tích này. Đây là trang thông tin của Sở Văn hóa, Thể thao và Du lịch về các di tích cấp quốc gia (có mục Nhà tù Phú Lợi) — không phải tour ảo."},
+  mc:[
+    {q:"Nhà tù Phú Lợi gắn với cuộc kháng chiến nào?", opts:["Chống Mỹ, cứu nước","Chống Tống","Chống Nguyên","Khởi nghĩa Lam Sơn"], ans:0},
+    {q:"Nhà tù Phú Lợi từng dùng để giam giữ đối tượng nào?", opts:["Du khách","Cán bộ và người yêu nước","Vận động viên","Học sinh"], ans:1},
+    {q:"Nhà tù Phú Lợi được tổ chức thành trại giam vào năm nào?", opts:["1957","1911","1880","2000"], ans:0},
+    {q:"Nhà tù Phú Lợi là địa điểm có giá trị chủ yếu về mặt nào?", opts:["Lịch sử","Giải trí","Thương mại","Thể thao"], ans:0},
+    {q:"Tham quan Nhà tù Phú Lợi giúp học sinh hiểu hơn về điều gì?", opts:["Tinh thần đấu tranh kiên cường","Kỹ thuật trồng hoa","Lịch sử bóng đá","Thiên văn học"], ans:0}
+  ],
+  fill:[
+    {q:"Nhà tù Phú Lợi được chính quyền Ngô Đình Diệm tổ chức thành trại giam vào năm ______.", ans:"1957", accept:["1957"]},
+    {q:"Vụ đầu độc tù nhân Phú Lợi gây chấn động dư luận diễn ra vào cuối năm ______.", ans:"1958", accept:["1958"]},
+    {q:"Nhà tù Phú Lợi từng mang tên ngụy trang là Trung tâm ______ Phú Lợi.", ans:"Huấn chính", accept:["huan chinh","trung tam huan chinh"]},
+    {q:"Ba trại giam chính thường được nhắc đến tại Phú Lợi là Chi Lăng, Bạch Đằng và ______.", ans:"Đống Đa", accept:["dong da"]},
+    {q:"Di tích Nhà tù Phú Lợi được công nhận là di tích lịch sử cấp quốc gia vào năm ______.", ans:"1980", accept:["1980"]}
+  ],
+  matchOptions:{a:"Năm tổ chức trại giam Phú Lợi", b:"Hoạt động học tập lịch sử", c:"Di tích về chế độ lao tù trong chiến tranh", d:"Phẩm chất của nhiều người tù cách mạng", e:"Đối tượng từng bị giam giữ"},
+  match:[
+    {a:"Nhà tù Phú Lợi", ans:"c"},
+    {a:"Người yêu nước", ans:"e"},
+    {a:"1957", ans:"a"},
+    {a:"Tinh thần bất khuất", ans:"d"},
+    {a:"Tham quan di tích", ans:"b"}
+  ]
+},
+{
+  id:"bao-tang-chung-tich", img:"img/bao-tang.jpg", name:"Bảo tàng Chứng tích Chiến tranh", icon:"🕊️", color:"#2e7d6b",
+  short:"Nơi lưu giữ chứng tích và thông điệp hòa bình",
+  intro:"Bảo tàng tọa lạc tại số 28 đường Võ Văn Tần, TP. Hồ Chí Minh, bắt đầu mở cửa đón khách ngày 4/9/1975. Nơi đây trưng bày tư liệu, hiện vật về chứng tích và hậu quả chiến tranh, hướng người xem đến thông điệp trân trọng hòa bình.",
+  vr:{url:"https://yoolife.vn/@yoolifevr360lichsu/post/75852cff91624673bc97c19511c01dfa", label:"🥽 Tham quan ảo VR360 (YooLife)", note:"Trải nghiệm số hóa VR360 toàn bộ Bảo tàng trên nền tảng YooLife, được Cổng thông tin Vietnam.vn giới thiệu."},
+  vr2:{url:"https://baotangchungtichchientranh.vn/vi/trung-bay-va-su-kien/trung-bay/hoi-niem", label:"🥽 Tham quan VR360 trên trang chính thức của Bảo tàng (chuyên đề “Hồi niệm”)"},
+  info:{url:"https://baotangchungtichchientranh.vn/", label:"ℹ️ Trang chính thức của Bảo tàng"},
+  mc:[
+    {q:"Bảo tàng Chứng tích Chiến tranh nằm ở thành phố nào?", opts:["Huế","TP. Hồ Chí Minh","Hà Nội","Đà Nẵng"], ans:1},
+    {q:"Bảo tàng chủ yếu giới thiệu nội dung gì?", opts:["Chứng tích và hậu quả chiến tranh","Lịch sử điện ảnh","Công nghệ máy tính","Thể thao"], ans:0},
+    {q:"Hiện vật nào có thể được trưng bày tại bảo tàng?", opts:["Máy bay quân sự","Đồ chơi điện tử","Robot gia dụng","Thiết bị nhà bếp"], ans:0},
+    {q:"Bảo tàng Chứng tích Chiến tranh hướng người xem đến thông điệp nào?", opts:["Trân trọng hòa bình","Khuyến khích chiến tranh","Quên lịch sử","Không cần bảo vệ di sản"], ans:0},
+    {q:"Khi tìm hiểu lịch sử tại bảo tàng, học sinh nên làm gì?", opts:["Đọc chú thích hiện vật","Viết lên tường","Tự ý chạm hiện vật","Bỏ qua hướng dẫn"], ans:0}
+  ],
+  fill:[
+    {q:"Bảo tàng Chứng tích Chiến tranh bắt đầu mở cửa đón khách vào ngày ______ (ghi ngày/tháng/năm).", ans:"4/9/1975", accept:["4/9/1975","04/09/1975","4-9-1975","04-09-1975","ngay 4 thang 9 nam 1975","4 thang 9 nam 1975"]},
+    {q:"Tên gọi ban đầu của bảo tàng là Nhà Trưng bày tội ác ______.", ans:"Mỹ - Ngụy", accept:["my nguy","my - nguy","mynguy","my nguỵ"]},
+    {q:"Bảo tàng chính thức mang tên Bảo tàng Chứng tích Chiến tranh từ năm ______.", ans:"1995", accept:["1995"]},
+    {q:"Bảo tàng tọa lạc tại số 28 đường ______ ở Thành phố Hồ Chí Minh.", ans:"Võ Văn Tần", accept:["vo van tan"]},
+    {q:"Trong các trưng bày về hậu quả chiến tranh, chất độc hóa học được nhắc đến nhiều là chất độc ______.", ans:"da cam", accept:["da cam","chat doc da cam","chat doc mau da cam","mau da cam"]}
+  ],
+  matchOptions:{a:"Giá trị cần trân trọng", b:"Quy định cần tuân thủ khi tham quan", c:"Nơi trưng bày chứng tích chiến tranh", d:"Nguồn thông tin để tìm hiểu quá khứ", e:"Một loại hiện vật trưng bày"},
+  match:[
+    {a:"Bảo tàng Chứng tích Chiến tranh", ans:"c"},
+    {a:"Máy bay quân sự", ans:"e"},
+    {a:"Hòa bình", ans:"a"},
+    {a:"Tư liệu lịch sử", ans:"d"},
+    {a:"Nội quy bảo tàng", ans:"b"}
+  ]
+}
+];
+
+function norm(s){
+  return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+}
+const state = {}; // siteId -> Set of solved keys
+SITES.forEach(s=>state[s.id]=new Set());
+
+function solvedCount(){ let n=0; SITES.forEach(s=>n+=state[s.id].size); return n; }
+function updateScores(){
+  SITES.forEach(s=>{
+    const el=document.getElementById("score-"+s.id); if(el) el.textContent = "⭐ Điểm: "+state[s.id].size+" / 15";
+    const cp=document.getElementById("cardprog-"+s.id); if(cp) cp.textContent = state[s.id].size+" / 15 câu đúng";
+  });
+  document.getElementById("totalText").textContent = solvedCount()+" / 75 câu đúng";
+  document.getElementById("totalFill").style.width = (solvedCount()/75*100)+"%";
+}
+function markSolved(siteId,key){ state[siteId].add(key); updateScores(); }
+
+function render(){
+  const cards=document.getElementById("cards");
+  const wrap=document.getElementById("sites");
+  SITES.forEach((s,si)=>{
+    const card=document.createElement("div"); card.className="card"; card.style.setProperty("--c",s.color);
+    card.innerHTML = `<img class="cardimg" src="${s.img}" alt="${s.name}"><h3>${s.icon} ${s.name}</h3><p>${s.short}</p>
+      <div class="prog" id="cardprog-${s.id}">0 / 15 câu đúng</div>
+      <a class="btn btn-vr" href="${s.vr.url}" target="_blank" rel="noopener">${s.vr.label}</a>
+      <a class="btn btn-main" href="#${s.id}">✏️ Làm bài</a>`;
+    cards.appendChild(card);
+
+    const sec=document.createElement("section"); sec.className="site"; sec.id=s.id; sec.style.setProperty("--c",s.color);
+    let h = `<img class="siteimg" src="${s.img}" alt="${s.name}"><h2>${s.icon} ${s.name}</h2><p class="intro">${s.intro}</p>
+      <div class="vrbox">🔗 <a href="${s.vr.url}" target="_blank" rel="noopener">${s.vr.label}</a> — ${s.vr.note}
+      ${s.vr2?`<br>🔗 <a href="${s.vr2.url}" target="_blank" rel="noopener">${s.vr2.label}</a>`:""}
+      ${s.info?`<br>🔗 <a href="${s.info.url}" target="_blank" rel="noopener">${s.info.label}</a>`:""}</div>
+      <span class="score" id="score-${s.id}">⭐ Điểm: 0 / 15</span>`;
+
+    h += `<h4 class="part">A. Trắc nghiệm (Câu 1–5) — bấm chọn đáp án</h4>`;
+    s.mc.forEach((item,i)=>{
+      h += `<div class="q"><div class="qt">Câu ${i+1}. ${item.q}</div><div class="opts">`;
+      item.opts.forEach((op,j)=>{
+        h += `<button class="opt" data-site="${s.id}" data-type="mc" data-idx="${i}" data-opt="${j}">${"ABCD"[j]}. ${op}</button>`;
+      });
+      h += `</div><div class="fb" id="fb-${s.id}-mc-${i}"></div></div>`;
+    });
+
+    h += `<h4 class="part">B. Điền khuyết nâng cao (Câu 6–10) — gõ đáp án rồi bấm Kiểm tra</h4>`;
+    s.fill.forEach((item,i)=>{
+      h += `<div class="q"><div class="qt">Câu ${i+6}. ${item.q}</div>
+        <div class="fillrow"><input type="text" id="in-${s.id}-${i}" placeholder="Gõ đáp án của em vào đây..." autocomplete="off">
+        <button class="btn btn-check" data-site="${s.id}" data-type="fillcheck" data-idx="${i}">Kiểm tra</button>
+        <button class="btn btn-show" data-site="${s.id}" data-type="fillshow" data-idx="${i}">Xem đáp án</button></div>
+        <div class="fb" id="fb-${s.id}-fill-${i}"></div>
+        <div class="ans" id="ans-${s.id}-${i}">Đáp án: <b>${item.ans}</b></div></div>`;
+    });
+
+    h += `<h4 class="part">C. Nối cột (Câu 11–15) — chọn chữ cái ở cột B cho từng mục ở cột A</h4>`;
+    h += `<table class="match"><tr><th>Cột B</th></tr>${Object.entries(s.matchOptions).map(([k,v])=>`<tr><td><b>${k}.</b> ${v}</td></tr>`).join("")}</table>`;
+    s.match.forEach((item,i)=>{
+      h += `<div class="matchitem" id="mi-${s.id}-${i}"><span><b>Câu ${i+11}.</b> ${item.a}</span>
+        <span><select id="sel-${s.id}-${i}" data-site="${s.id}" data-type="match" data-idx="${i}">
+          <option value="">— chọn —</option><option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option>
+        </select> <span class="fb" id="fb-${s.id}-match-${i}"></span></span></div>`;
+    });
+
+    h += `<button class="btn reset" data-site="${s.id}" data-type="reset">↺ Làm lại phần này</button>`;
+    sec.innerHTML=h;
+    wrap.appendChild(sec);
+  });
+  updateScores();
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  const siteId=b.dataset.site; if(!siteId) return;
+  const s=SITES.find(x=>x.id===siteId);
+  if(b.dataset.type==="mc"){
+    const i=+b.dataset.idx, j=+b.dataset.opt, item=s.mc[i];
+    const fb=document.getElementById(`fb-${siteId}-mc-${i}`);
+    if(j===item.ans){
+      b.classList.add("correct"); b.disabled=true;
+      b.parentElement.querySelectorAll(".opt").forEach(o=>{ if(o!==b) o.disabled=true; });
+      fb.textContent="✅ Đúng rồi!"; fb.className="fb ok";
+      markSolved(siteId,"mc-"+i);
+    } else {
+      b.classList.add("wrong"); b.disabled=true;
+      fb.textContent="❌ Chưa đúng, em chọn lại đáp án khác nhé!"; fb.className="fb no";
+    }
+  }
+  if(b.dataset.type==="fillcheck"){
+    const i=+b.dataset.idx, item=s.fill[i];
+    const inp=document.getElementById(`in-${siteId}-${i}`);
+    const fb=document.getElementById(`fb-${siteId}-fill-${i}`);
+    const v=norm(inp.value);
+    const ok = item.accept.some(a=>{ const na=norm(a); return v===na || (na.length>=4 && v.includes(na)); });
+    if(ok){ inp.classList.add("correct"); inp.classList.remove("wrong"); inp.disabled=true; b.disabled=true;
+      fb.textContent="✅ Đúng rồi! Đáp án: "+item.ans; fb.className="fb ok"; markSolved(siteId,"fill-"+i);
+    } else { inp.classList.add("wrong"); fb.textContent="❌ Chưa đúng, em kiểm tra lại và thử lại nhé!"; fb.className="fb no"; }
+  }
+  if(b.dataset.type==="fillshow"){
+    const i=+b.dataset.idx; const a=document.getElementById(`ans-${siteId}-${i}`);
+    a.style.display = a.style.display==="block" ? "none" : "block";
+  }
+  if(b.dataset.type==="reset"){ location.hash=siteId; location.reload(); }
+});
+document.addEventListener("change",e=>{
+  const sel=e.target.closest("select"); if(!sel||sel.dataset.type!=="match") return;
+  const siteId=sel.dataset.site, i=+sel.dataset.idx;
+  const s=SITES.find(x=>x.id===siteId), item=s.match[i];
+  const box=document.getElementById(`mi-${siteId}-${i}`);
+  const fb=document.getElementById(`fb-${siteId}-match-${i}`);
+  if(!sel.value){ box.className="matchitem"; fb.textContent=""; return; }
+  if(sel.value===item.ans){ box.className="matchitem correct"; sel.disabled=true; fb.textContent="✅ Đúng!"; fb.className="fb ok"; markSolved(siteId,"match-"+i); }
+  else { box.className="matchitem wrong"; fb.textContent="❌ Chưa đúng"; fb.className="fb no"; }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && e.target.matches("input[id^='in-']")){
+    const rest=e.target.id.slice(3); const pos=rest.lastIndexOf("-");
+    const siteId=rest.slice(0,pos), idx=rest.slice(pos+1);
+    const btn=document.querySelector(`button[data-type="fillcheck"][data-site="${siteId}"][data-idx="${idx}"]`);
+    if(btn && !btn.disabled) btn.click();
+  }
+});
+render();
+</script>
+</body>
+</html>
