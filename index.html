@@ -54,6 +54,7 @@
   table.match{width:100%;border-collapse:collapse;margin-bottom:6px}
   table.match th,table.match td{border:1px solid #ddc896;padding:8px 10px;text-align:left;font-size:.95rem}
   table.match th{background:#f3e5c3}
+  .colhead{background:#f3e5c3;border:1px solid #ddc896;border-radius:6px;padding:8px 10px;font-weight:700;margin:10px 0 6px}
   .matchitem{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid #ddc896;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fffaf0;flex-wrap:wrap}
   .matchitem select{padding:8px 10px;border:2px solid #ddc896;border-radius:8px;font-size:1rem;font-weight:700;font-family:inherit}
   .matchitem.correct{border-color:#2e9e4f;background:#e3f6e3}
@@ -308,6 +309,7 @@ function render(){
 
     h += `<h4 class="part">C. Nối cột (Câu 11–15) — chọn chữ cái ở cột B cho từng mục ở cột A</h4>`;
     h += `<table class="match"><tr><th>Cột B</th></tr>${Object.entries(s.matchOptions).map(([k,v])=>`<tr><td><b>${k}.</b> ${v}</td></tr>`).join("")}</table>`;
+    h += `<div class="colhead">Cột A — chọn chữ cái ở cột B cho từng mục</div>`;
     s.match.forEach((item,i)=>{
       h += `<div class="matchitem" id="mi-${s.id}-${i}"><span><b>Câu ${i+11}.</b> ${item.a}</span>
         <span><select id="sel-${s.id}-${i}" data-site="${s.id}" data-type="match" data-idx="${i}">
